@@ -1,0 +1,32 @@
+{
+	"notifications": [
+		{
+			"notification": "Mark Webber reacted to your recent post My first tournament today!",
+			"date": "1m ago"
+		},
+		{
+			"notification": "Angela Gray followed you",
+			"date": "5m ago"
+		},
+		{
+			"notification": "Jacob Thompson has joined your group Chess Club",
+			"date": "1 day ago"
+		},
+		{
+			"notification": "Rizky Hasanuddin sent you a private message",
+			"date": "5 days ago"
+		},
+		{
+			"notification": "Kimberly Smith commented on your picture",
+			"date": "1 week ago"
+		},
+		{
+			"notification": "Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate",
+			"date": "2 weeks ago"
+		},
+		{
+			"notification": "Anna Kim left the group Chess Club",
+			"date": "2 weeks ago"
+		}
+	]
+}
