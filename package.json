@@ -1,5 +1,22 @@
 {
   "devDependencies": {
     "typescript": "^4.9.5"
-  }
+  },
+  "name": "notifications-page",
+  "description": "![Design preview for the Notifications page coding challenge](./design/desktop-preview.jpg)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erictakman/notifications-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erictakman/notifications-page/issues"
+  },
+  "homepage": "https://github.com/erictakman/notifications-page#readme"
 }
