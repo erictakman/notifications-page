@@ -9,16 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const notifications = [];
+let unreadCounter = 0;
 const data = () => __awaiter(void 0, void 0, void 0, function* () {
     return yield fetch("../assets/data/notifications.json")
         .then((response) => response.json());
 });
 data().then((data) => {
     data.forEach((notification) => {
-        notifications.push(new NotificationElement(notification.user, notification.profileImage, notification.content, notification.date, notification.image, notification.imageAlt, notification.message, notification.unread));
+        notifications.push(new NotificationElement(notification.user, notification.userName, notification.profileImage, notification.content, notification.date, notification.postUrl, notification.groupUrl, notification.image, notification.imageAlt, notification.imageUrl, notification.message, notification.unread));
+        if (notification.unread)
+            unreadCounter++;
     });
+    document.querySelector("#unread-counter").innerHTML = unreadCounter.toString();
     notifications.forEach(notification => {
         document.querySelector("main").appendChild(notification.getNotificationElement());
     });
 });
-console.log(notifications);

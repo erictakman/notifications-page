@@ -1,20 +1,20 @@
 "use strict";
 class NotificationElement {
-    constructor(user, profileImage, content, date, image, imageAlt, message, unread) {
-        this.subject = "followed";
+    constructor(user, userName, profileImage, content, date, postUrl, groupUrl, image, imageAlt, imageUrl, message, unread) {
+        this.messageType = "followed";
         this.unread = true;
         this.generateSubject = () => {
             if (this.content.indexOf("post") !== -1) {
-                this.subject = "post";
+                this.messageType = "post";
             }
             else if (this.content.indexOf("group") !== -1) {
-                this.subject = "group";
+                this.messageType = "group";
             }
             else if (this.content.indexOf("message") !== -1) {
-                this.subject = "message";
+                this.messageType = "message";
             }
             else if (this.content.indexOf("picture") !== -1) {
-                this.subject = "picture";
+                this.messageType = "picture";
             }
         };
         this.createElement = (elementType, classList, innerHtml) => {
@@ -23,6 +23,13 @@ class NotificationElement {
                 element.innerHTML = innerHtml;
             element.classList.add(classList);
             return element;
+        };
+        this.appendLink = (notificationElement, text, place, element, classList) => {
+            var _a;
+            notificationElement.innerHTML = notificationElement.innerHTML.replace(text, "");
+            const a = this.createElement(element, classList, text);
+            a.setAttribute("href", (_a = this.postUrl) !== null && _a !== void 0 ? _a : "#");
+            notificationElement.insertAdjacentElement(place, a);
         };
         this.appendMessage = () => {
             const message = this.createElement("p", "notification-message", this.message);
@@ -33,7 +40,7 @@ class NotificationElement {
             this.appendImage(this.image, (_a = this.imageAlt) !== null && _a !== void 0 ? _a : "Notification image", "notification-image");
         };
         this.appendProfileImage = () => {
-            this.appendImage(this.profileImage, `Image of ${this.user}`, "notification-profile-image");
+            this.appendImage(this.profileImage, `Image of ${this.userName}`, "notification-profile-image");
         };
         this.appendImage = (source, alt, classList) => {
             if (source === undefined)
@@ -44,33 +51,33 @@ class NotificationElement {
             this.notificationElement.appendChild(image);
         };
         this.assembleNotification = () => {
-            const user = this.createElement("span", "notification-user", this.user + " ");
             const content = this.createElement("p", "notification-content", this.content);
             const date = this.createElement("p", "notification-date", this.date);
-            content.insertAdjacentElement("afterbegin", user);
+            this.appendLink(content, `${this.userName} `, "afterbegin", "a", "notification-user");
             this.appendProfileImage();
             this.notificationElement.appendChild(content);
             this.notificationElement.appendChild(date);
-            if (this.subject === "post") {
+            if (this.messageType === "post") {
                 const post = this.content.split("post ", 2)[1];
-                content.innerHTML = content.innerHTML.replace(post, `<a href='#'><b>${post}</b></a>`);
+                this.appendLink(content, post, "beforeend", "a", "notification-content-post");
             }
-            if (this.subject === "group") {
+            if (this.messageType === "group") {
                 const group = this.content.split("group ", 2)[1];
-                content.innerHTML = content.innerHTML.replace(group, `<a href='#'><b>${group}</b></a>`);
+                this.appendLink(content, group, "beforeend", "a", "notification-content-group");
             }
             if (this.unread) {
                 this.notificationElement.classList.add("notification-unread");
-                const unread = this.createElement("span", "notification-unread-indicator-dot", " ");
+                const unread = this.createElement("span", "notification-unread-indicator-dot");
                 content.insertAdjacentElement("beforeend", unread);
             }
-            if (this.subject === "message")
+            if (this.messageType === "message")
                 this.appendMessage();
-            if (this.subject === "picture")
+            if (this.messageType === "picture")
                 this.appendPostImage();
         };
         this.getNotificationElement = () => { return this.notificationElement; };
         this.user = user;
+        this.userName = userName;
         this.profileImage = profileImage;
         this.content = content;
         this.date = date;
