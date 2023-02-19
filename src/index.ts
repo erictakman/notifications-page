@@ -2,7 +2,7 @@ const notifications: NotificationElement[] = [];
 let unreadCounter: number = 0;
 
 const data = async () => {
-	return await fetch("../assets/data/notifications.json")
+	return await fetch("https://api.github.com/repos/erictakman/notifications-page/assets/data/notifications.json")
 		.then((response) => response.json());
 }
 
