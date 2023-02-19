@@ -172,10 +172,11 @@ button:hover {
 	width: 50px;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 1440px) {
 	html,
 	body {
 		font-size: 14px;
+		background-color: var(--color-white);
 	}
 
 	#container {
