@@ -1,6 +1,7 @@
-[
+"use strict";
+const notificationData = [
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Mark Webber",
         "profileImage": "avatar-mark-webber.webp",
         "content": "reacted to your recent post My first tournament today!",
@@ -8,7 +9,7 @@
         "unread": true
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Angela Gray",
         "profileImage": "avatar-angela-gray.webp",
         "content": "followed you",
@@ -16,7 +17,7 @@
         "unread": true
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Jacob Thompson",
         "profileImage": "avatar-jacob-thompson.webp",
         "content": "has joined your group Chess Club",
@@ -24,7 +25,7 @@
         "unread": true
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Rizky Hasanuddin",
         "profileImage": "avatar-rizky-hasanuddin.webp",
         "content": "sent you a private message",
@@ -33,7 +34,7 @@
         "unread": false
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Kimberly Smith",
         "profileImage": "avatar-kimberly-smith.webp",
         "content": "commented on your picture",
@@ -44,7 +45,7 @@
         "unread": false
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Nathan Peterson",
         "profileImage": "avatar-nathan-peterson.webp",
         "content": "reacted to your recent post 5 end-game strategies to increase your win rate",
@@ -52,11 +53,11 @@
         "unread": false
     },
     {
-        "userLink": "#",
+        "user": "#",
         "userName": "Anna Kim",
         "profileImage": "avatar-anna-kim.webp",
         "content": "left the group Chess Club",
         "date": "2 weeks ago",
         "unread": false
     }
-]
+];

@@ -23,6 +23,8 @@ Started out with thinking in terms of what components the page would consist of,
 
 I added the provided colors and fonts to the css. Thereafter the text that was provided for the notifactions were refactored into the json file called "notifications", and the data was fetched from there. This way it could more easily be changed and manipulated for fututre use and redesigns of the page.
 
+After some CORS issues with fetching data from local JSON I decided to more the data into another typescript file and store it in notificationsData instead.
+
 ### Built with
 
 - Semantic HTML5 markup
