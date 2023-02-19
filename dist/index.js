@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const notifications = [];
 let unreadCounter = 0;
 const data = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield fetch("../assets/data/notifications.json")
+    return yield fetch("https://api.github.com/repos/erictakman/notifications-page/assets/data/notifications.json")
         .then((response) => response.json());
 });
 data().then((data) => {
