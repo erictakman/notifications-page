@@ -98,7 +98,7 @@ button:hover {
 	grid-column-gap: 1rem;
 	border-radius: 0.5rem;
 	padding: 1rem;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .notification-user {
@@ -173,9 +173,22 @@ button:hover {
 }
 
 @media screen and (max-width: 375px) {
-	
-}
+	html,
+	body {
+		font-size: 14px;
+	}
 
-@media screen and (max-width: 1440px) {
+	#container {
+		width: 100%;
+		margin: 0;
+		padding: 1rem;
+	}
 	
+	main {
+		gap: 0.75rem;
+	}
+
+	.notification-profile-image, .notification-image {
+		width: 35px;
+	}
 }
