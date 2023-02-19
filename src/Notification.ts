@@ -18,6 +18,7 @@ interface INotification {
 class NotificationElement {
 
 	private notificationElement: Element;
+	private contentElement: Element;
 	private messageType: MessageType = "followed";
 	private user: string;
 	private userName: string;
@@ -56,6 +57,7 @@ class NotificationElement {
 		this.message = message;
 		this.unread = unread!;
 		this.notificationElement = this.createElement("div", "notification");
+		this.contentElement = this.createElement("p", "notification-content", this.content);
 
 		this.generateSubject();
 		this.assembleNotification();
@@ -115,29 +117,28 @@ class NotificationElement {
 	}
 
 	public assembleNotification = () => {
-		const content = this.createElement("p", "notification-content", this.content);
 		const date = this.createElement("p", "notification-date", this.date);
 
-		this.appendLink(content, `${this.userName} `, "afterbegin", "a", "notification-user");
+		this.appendLink(this.contentElement, `${this.userName} `, "afterbegin", "a", "notification-user");
 
 		this.appendProfileImage();
-		this.notificationElement.appendChild(content);
+		this.notificationElement.appendChild(this.contentElement);
 		this.notificationElement.appendChild(date);
 
 		if (this.messageType === "post") {
 			const post = this.content.split("post ", 2)[1];
-			this.appendLink(content, post, "beforeend", "a", "notification-content-post")
+			this.appendLink(this.contentElement, post, "beforeend", "a", "notification-content-post")
 		}
 
 		if (this.messageType === "group") {
 			const group = this.content.split("group ", 2)[1];
-			this.appendLink(content, group, "beforeend", "a", "notification-content-group")
+			this.appendLink(this.contentElement, group, "beforeend", "a", "notification-content-group")
 		}
 
 		if (this.unread) {
 			this.notificationElement.classList.add("notification-unread");
 			const unread = this.createElement("span", "notification-unread-indicator-dot");
-			content.insertAdjacentElement("beforeend", unread);
+			this.contentElement.insertAdjacentElement("beforeend", unread);
 		}
 
 		if (this.messageType === "message") this.appendMessage();
@@ -147,5 +148,18 @@ class NotificationElement {
 	}
 
 	public getNotificationElement = (): Element => { return this.notificationElement; }
+
+	public setNotificationReadState = (state: boolean) => {
+		if (state === this.unread) return;
+		this.unread = state;
+		if (state) {
+			this.notificationElement.classList.add("notification-unread");
+			const unread = this.createElement("span", "notification-unread-indicator-dot");
+			this.contentElement.insertAdjacentElement("beforeend", unread);
+		} else {
+			this.notificationElement.classList.remove("notification-unread");
+			this.contentElement.removeChild(this.contentElement.lastChild!);
+		}
+	}
 
 }

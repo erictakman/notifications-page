@@ -27,10 +27,20 @@ data().then((data: INotification[]) => {
 	
 	});
 	
-	document.querySelector("#unread-counter")!.innerHTML = unreadCounter.toString();
+	document.getElementById("unread-counter")!.innerHTML = unreadCounter.toString();
 
 	notifications.forEach(notification => {
 		document.querySelector("main")!.appendChild(notification.getNotificationElement());
+	});
+
+	document.getElementById("mark-all-as-read")!.addEventListener("click", () => {
+		console.log("clicked");
+		notifications.forEach(notification => {
+			notification.setNotificationReadState(false);
+			unreadCounter = 0;
+			document.getElementById("unread-counter")!.innerHTML = unreadCounter.toString();
+			document.getElementById("unread-counter")!.style.display = "none";
+		});
 	});
 
 });
